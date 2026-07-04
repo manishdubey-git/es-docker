@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "name": "Code Quality Review",
+  "description": "Analyzes modified Python source files for code smells, design patterns, and best practices. Generates suggestions for readability, maintainability, and performance improvements while preserving existing functionality.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "es-mcp/**/*.py",
+      "es-test.py"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A Python source file in this Elasticsearch MCP server project was just saved. Please analyze the modified code and provide actionable suggestions for improvement. Focus on:\n\n1. **Code smells** — duplicated logic, overly long functions, unclear naming, magic values\n2. **Design patterns** — check alignment with the project's register pattern, domain-per-file convention, and shared ES client usage\n3. **Best practices** — proper error handling, type hints, docstring quality (these are MCP tool descriptions), optional parameter handling\n4. **Readability** — variable naming, function structure, comments\n5. **Performance** — unnecessary operations, inefficient ES query patterns\n\nKeep suggestions concise and prioritize the most impactful improvements. Do not refactor automatically — present findings as suggestions only."
+  }
+}
